@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Gallery – Te-Deum L'Audamus Cafeteria</title>
+  <link rel="stylesheet" href="css/styles.css">
+  
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img">TD<br>CA</div>
+      <div class="nav-logo-text"><div class="nav-logo-name">Te-Deum <span>L'Audamus</span></div><div class="nav-logo-sub">Cafeteria — Techiman</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a>
+      <a href="order.html">Order</a><a href="reservations.html">Reservations</a>
+      <a href="gallery.html" class="active">Gallery</a><a href="catering.html">Catering</a>
+      <a href="reviews.html">Reviews</a><a href="contact.html">Contact</a>
+      <a href="order.html" class="nav-cta">Order Now</a>
+    </div>
+    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a>
+  <a href="order.html">Order</a><a href="reservations.html">Reservations</a>
+  <a href="gallery.html" class="active">Gallery</a><a href="catering.html">Catering</a>
+  <a href="reviews.html">Reviews</a><a href="contact.html">Contact</a>
+</div>
+<div class="page-content">
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Gallery</span></div>
+      <div class="section-label">Visual Journey</div>
+      <h1 class="section-title">Our <span>Gallery</span></h1>
+      <p style="color:var(--text-muted);max-width:600px;margin-top:10px">A glimpse into the Te-Deum experience — our food, our space, and the moments we create.</p>
+    </div>
+  </div>
+  
+<section>
+  <div class="container">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px" id="galFilters">
+      <button class="gal-filter active cat-tab" data-cat="all">🖼️ All</button>
+      <button class="gal-filter cat-tab" data-cat="food">🍽️ Food</button>
+      <button class="gal-filter cat-tab" data-cat="interior">🏠 Interior</button>
+      <button class="gal-filter cat-tab" data-cat="events">🎉 Events</button>
+    </div>
+    <div class="masonry-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</button>
+    <div class="lightbox-img" id="lightboxImg">🖼️</div>
+    <div class="lightbox-info">
+      <div class="lightbox-title" id="lightboxTitle"></div>
+      <div class="lightbox-cat" id="lightboxCat"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+<footer>
+  <div class="menu-stripe"></div>
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div><div class="footer-brand-name">Te-Deum <span>L'Audamus</span></div><p class="footer-tagline">We Create, You Enjoy</p>
+      <p style="font-size:.85rem;color:var(--text-muted);line-height:1.7">Premium cafeteria in Techiman — Continental, Ghanaian, Chinese, Pizza, Pastries and more.</p>
+      <div class="footer-social"><a href="#" class="social-btn">📘</a><a href="#" class="social-btn">📸</a><a href="#" class="social-btn">🎵</a><a href="#" class="social-btn">💬</a></div></div>
+    <div><div class="footer-heading">Quick Links</div><div class="footer-links">
+      <a href="index.html">→ Home</a><a href="menu.html">→ Menu</a>
+      <a href="order.html">→ Order Online</a><a href="catering.html">→ Catering</a>
+      <a href="gallery.html">→ Gallery</a><a href="contact.html">→ Contact</a>
+    </div></div>
+    <div><div class="footer-heading">Contact</div><div class="footer-links">
+      <a href="contact.html">📍 Unnamed Road, Techiman</a>
+      <a href="contact.html">🗺️ H3M7+2P Techiman</a>
+    </div></div>
+    <div><div class="footer-heading">Hours</div><div class="footer-hours">
+      <div class="hours-row"><span class="day">Mon – Sun</span><span class="time">8AM – Late</span></div>
+    </div>
+    <p style="margin-top:12px;font-size:.78rem;color:var(--text-muted);line-height:1.8">🚗 Drive-Through Available<br>🚚 Delivery Available<br>🍺 Full Bar Service<br>🅿️ Free Parking</p></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-inner">
+    <span>© 2026 Te-Deum L'Audamus Cafeteria.</span><span>Techiman, Ghana 🇬🇭</span>
+  </div></div></div>
+</footer>
+<div class="floating-btns">
+  <a href="https://wa.me/233249392333" target="_blank" rel="noopener noreferrer" class="float-btn float-wa" data-label="WhatsApp" style="position: fixed; z-index: 999999; cursor: pointer;">💬</a>
+  <a href="tel:+2330249392333" class="float-btn float-call" data-label="Call">📞</a>
+  <a href="order.html" class="float-btn float-order" data-label="Order">🛒</a>
+</div>
+<script src="js/api.js"></script><script src="js/main.js"></script><script src="js/gallery.js"></script>
+</body>
+</html>

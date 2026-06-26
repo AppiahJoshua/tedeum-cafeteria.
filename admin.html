@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Admin Dashboard – Te-Deum L'Audamus Cafeteria</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img">TD<br>CA</div>
+      <div class="nav-logo-text"><div class="nav-logo-name">Te-Deum <span>Admin</span></div><div class="nav-logo-sub">Dashboard</div></div>
+    </a>
+    <div class="nav-links"><a href="index.html">← View Site</a></div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="font-size:.83rem;color:var(--text-muted)">Administrator</div>
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.88rem;border:2px solid var(--gold)">A</div>
+      <button onclick="API.logout()" class="btn btn-ghost btn-sm" style="font-size:.75rem">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<div class="admin-wrapper">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div style="padding:18px 16px;border-bottom:1px solid var(--border)">
+      <div style="font-size:.75rem;color:var(--text-muted)">Logged in as</div>
+      <div style="font-weight:700;margin-top:2px">Administrator</div>
+    </div>
+    <div class="sidebar-section">Overview</div>
+    <div class="sidebar-link active" data-panel="dashboard" onclick="switchPanel(this)"><span style="width:18px;text-align:center">📊</span> Dashboard</div>
+    <div class="sidebar-section">Restaurant</div>
+    <div class="sidebar-link" data-panel="orders" onclick="switchPanel(this)"><span style="width:18px;text-align:center">🛒</span> Orders <span class="notif-dot" id="orderNotifDot" style="margin-left:auto;display:none"></span></div>
+    <div class="sidebar-link" data-panel="reservations" onclick="switchPanel(this)"><span style="width:18px;text-align:center">📅</span> Reservations <span class="notif-dot" id="resNotifDot" style="margin-left:auto;display:none"></span></div>
+    <div class="sidebar-link" data-panel="menu" onclick="switchPanel(this)"><span style="width:18px;text-align:center">🍽️</span> Menu</div>
+    <div class="sidebar-section">Insights</div>
+    <div class="sidebar-link" data-panel="reviews" onclick="switchPanel(this)"><span style="width:18px;text-align:center">⭐</span> Reviews</div>
+    <div class="sidebar-link" data-panel="messages" onclick="switchPanel(this)"><span style="width:18px;text-align:center">📩</span> Messages</div>
+    <div class="sidebar-link" data-panel="analytics" onclick="switchPanel(this)"><span style="width:18px;text-align:center">📈</span> Analytics</div>
+    <div style="padding:16px;margin-top:auto;border-top:1px solid var(--border)">
+      <a href="index.html" class="btn btn-ghost btn-sm w-full" style="justify-content:center;width:100%">← Back to Site</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="admin-main">
+
+    <!-- DASHBOARD -->
+    <div class="admin-panel active" id="panel-dashboard">
+      <div class="admin-section-header">
+        <div><div class="section-label">Today</div><div class="admin-section-title">Dashboard Overview</div></div>
+        <div style="font-size:.83rem;color:var(--text-muted)">🟢 Cafeteria is Open</div>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(139,26,26,.14)">🛒</div><span class="stat-change up">↑</span></div><div class="stat-num" id="stat-orders-today">—</div><div class="stat-label">Orders Today</div></div>
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(212,160,32,.12)">💰</div><span class="stat-change up">↑</span></div><div class="stat-num" id="stat-revenue-today">—</div><div class="stat-label">Revenue Today</div></div>
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(72,166,95,.12)">📅</div><span class="stat-change up">↑</span></div><div class="stat-num" id="stat-reservations-today">—</div><div class="stat-label">Reservations Today</div></div>
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(193,122,58,.14)">⭐</div></div><div class="stat-num" id="stat-avg-rating">—</div><div class="stat-label">Avg Rating</div></div>
+      </div>
+      <div class="grid-2" style="margin-bottom:22px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px">
+          <div style="font-weight:700;margin-bottom:18px;font-size:.88rem">Weekly Revenue (GHS)</div>
+          <div class="chart-bar-group" id="weeklyChartBody">
+            <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:30%"></div><div class="chart-label">Mon</div></div>
+            <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:30%"></div><div class="chart-label">Tue</div></div>
+            <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:30%"></div><div class="chart-label">Wed</div></div>
+            <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:30%"></div><div class="chart-label">Thu</div></div>
+            <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:30%"></div><div class="chart-label">Fri</div></div>
+            <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:30%"></div><div class="chart-label">Sat</div></div>
+            <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:10%;background:var(--surface-3)"></div><div class="chart-label">Sun</div></div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px">
+          <div style="font-weight:700;margin-bottom:16px;font-size:.88rem">Top Selling Dishes</div>
+          <div id="topDishesBody" style="display:flex;flex-direction:column;gap:11px">
+            <p style="color:var(--text-muted);font-size:.83rem">Loading…</p>
+          </div>
+        </div>
+      </div>
+      <div class="admin-table-wrap">
+        <div style="padding:14px 18px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:700;font-size:.88rem">Recent Orders</div>
+          <button class="edit-btn" onclick="switchPanelById('orders')">View All →</button>
+        </div>
+        <table class="admin-table">
+          <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Time</th></tr></thead>
+          <tbody id="recentOrdersBody"><tr><td colspan="6" style="text-align:center;padding:24px;color:var(--text-muted)">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ORDERS -->
+    <div class="admin-panel" id="panel-orders">
+      <div class="admin-section-header">
+        <div class="admin-section-title">Manage Orders</div>
+        <select class="form-control" style="width:auto;padding:7px 12px;font-size:.8rem">
+          <option>All Orders</option><option>Pending</option><option>Preparing</option><option>On the Way</option><option>Delivered</option>
+        </select>
+      </div>
+      <div class="stat-cards">
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(248,120,120,.14)">⏳</div></div><div class="stat-num" id="stat-pending">—</div><div class="stat-label">Pending</div></div>
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(212,160,32,.12)">🔥</div></div><div class="stat-num" id="stat-preparing">—</div><div class="stat-label">Preparing</div></div>
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(72,166,95,.12)">🚚</div></div><div class="stat-num" id="stat-onway">—</div><div class="stat-label">On the Way</div></div>
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(139,26,26,.12)">✓</div></div><div class="stat-num" id="stat-delivered">—</div><div class="stat-label">Delivered Today</div></div>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>Items</th><th>Total</th><th>Type</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="ordersTableBody"><tr><td colspan="8" style="text-align:center;padding:28px;color:var(--text-muted)">Loading orders…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RESERVATIONS -->
+    <div class="admin-panel" id="panel-reservations">
+      <div class="admin-section-header">
+        <div class="admin-section-title">Manage Reservations</div>
+        <input type="date" class="form-control" style="width:auto;padding:7px 12px;font-size:.8rem">
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Ref</th><th>Guest</th><th>Phone</th><th>Date</th><th>Time</th><th>Guests</th><th>Occasion</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="resTableBody"><tr><td colspan="9" style="text-align:center;padding:28px;color:var(--text-muted)">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MENU -->
+    <div class="admin-panel" id="panel-menu">
+      <div class="admin-section-header">
+        <div class="admin-section-title">Menu Management</div>
+        <button class="btn btn-primary btn-sm" onclick="openModal('addItemModal')">+ Add Item</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Item & Photo</th><th>Category</th><th>Price (GHS)</th><th>Popular</th><th>Available</th><th>Actions</th></tr></thead>
+          <tbody id="menuAdminBody"><tr><td colspan="6" style="text-align:center;padding:28px;color:var(--text-muted)">Loading menu…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div class="admin-panel" id="panel-reviews">
+      <div class="admin-section-header"><div class="admin-section-title">Customer Reviews</div></div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Customer</th><th>Rating</th><th>Review</th><th>Dish</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="reviewsAdminBody"><tr><td colspan="6" style="text-align:center;padding:28px;color:var(--text-muted)">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MESSAGES -->
+    <div class="admin-panel" id="panel-messages">
+      <div class="admin-section-header"><div class="admin-section-title">Contact Messages</div></div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Phone</th><th>Subject</th><th>Message</th><th>Status</th></tr></thead>
+          <tbody id="messagesBody"><tr><td colspan="5" style="text-align:center;padding:28px;color:var(--text-muted)">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ANALYTICS -->
+    <div class="admin-panel" id="panel-analytics">
+      <div class="admin-section-title" style="margin-bottom:22px">Analytics</div>
+      <div class="stat-cards">
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(212,160,32,.12)">💰</div><span class="stat-change up">↑</span></div><div class="stat-num" id="ana-month-revenue">—</div><div class="stat-label">Monthly Revenue</div></div>
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(139,26,26,.12)">🛒</div><span class="stat-change up">↑</span></div><div class="stat-num" id="ana-month-orders">—</div><div class="stat-label">Orders This Month</div></div>
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(72,166,95,.12)">👥</div></div><div class="stat-num" id="ana-customers">—</div><div class="stat-label">Unique Customers</div></div>
+        <div class="stat-card"><div class="stat-card-top"><div class="stat-icon" style="background:rgba(193,122,58,.14)">⭐</div></div><div class="stat-num" id="ana-avg-rating">—</div><div class="stat-label">Avg Rating</div></div>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;margin-top:0">
+        <div style="font-weight:700;margin-bottom:18px;font-size:.88rem">Monthly Revenue Trend (GHS)</div>
+        <div class="chart-bar-group" style="height:180px" id="anaChartBody">
+          <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:40%"></div><div class="chart-label">Jan</div></div>
+          <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:50%"></div><div class="chart-label">Feb</div></div>
+          <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:60%"></div><div class="chart-label">Mar</div></div>
+          <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:70%"></div><div class="chart-label">Apr</div></div>
+          <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:80%"></div><div class="chart-label">May</div></div>
+          <div class="chart-bar-wrap"><div class="chart-val">—</div><div class="chart-bar" style="height:90%;background:var(--gold)"></div><div class="chart-label">Jun</div></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Add Menu Item Modal -->
+<div class="modal-overlay" id="addItemModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 style="font-family:'Playfair Display',serif">Add Menu Item</h3>
+      <button class="modal-close" onclick="closeModal('addItemModal')">✕</button>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Item Name</label><input class="form-control" id="new-name" placeholder="e.g. Grilled Catfish"></div>
+      <div class="form-group"><label class="form-label">Category</label>
+        <select class="form-control" id="new-cat">
+          <option value="breakfast">Breakfast</option>
+          <option value="salads">Salads</option>
+          <option value="continental">Continental</option>
+          <option value="ghanaian">Ghanaian</option>
+          <option value="chinese">Chinese</option>
+          <option value="sauces">Sauces</option>
+          <option value="pizza">Pizza</option>
+          <option value="sandwiches">Sandwiches</option>
+          <option value="snacks">Snacks</option>
+          <option value="pastries">Pastries</option>
+          <option value="drinks">Drinks</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Price (GHS)</label><input class="form-control" id="new-price" type="number" placeholder="0.00"></div>
+      <div class="form-group"><label class="form-label">Emoji</label><input class="form-control" id="new-emoji" placeholder="🍽️"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-control" id="new-desc" rows="3" placeholder="Brief description…"></textarea></div>
+    <button class="btn btn-primary" onclick="addMenuItem()">Add to Menu</button>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

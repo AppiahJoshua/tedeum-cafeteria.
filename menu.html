@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu – Te-Deum L'Audamus Cafeteria</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img">TD<br>CA</div>
+      <div class="nav-logo-text"><div class="nav-logo-name">Te-Deum <span>L'Audamus</span></div><div class="nav-logo-sub">Cafeteria — Techiman</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="about.html">About</a><a href="menu.html" class="active">Menu</a>
+      <a href="order.html">Order</a><a href="reservations.html">Reservations</a>
+      <a href="gallery.html">Gallery</a><a href="catering.html">Catering</a>
+      <a href="reviews.html">Reviews</a><a href="contact.html">Contact</a>
+      <a href="order.html" class="nav-cta">Order Now</a>
+    </div>
+    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="menu.html" class="active">Menu</a>
+  <a href="order.html">Order</a><a href="reservations.html">Reservations</a>
+  <a href="gallery.html">Gallery</a><a href="catering.html">Catering</a>
+  <a href="reviews.html">Reviews</a><a href="contact.html">Contact</a>
+</div>
+
+<div class="page-content">
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span>Menu</span></div>
+      <div class="section-label">Full Menu</div>
+      <h1 class="section-title">Our <span>Menu</span></h1>
+      <p style="color:var(--text-muted);max-width:600px;margin-top:10px">Over 100 dishes across 12 categories — Breakfast, Continental, Ghanaian, Chinese, Pizza, Sandwiches, Pastries and more.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="menu-controls">
+        <div class="menu-search">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="menuSearch" placeholder="Search any dish…">
+        </div>
+        <a href="order.html" class="btn btn-primary btn-sm">🛒 Order Online</a>
+        <a href="catering.html" class="btn btn-ghost btn-sm">🎂 Catering</a>
+      </div>
+
+      <div class="menu-category-tabs" id="catTabs">
+        <button class="cat-tab active" data-cat="all">🍽️ All</button>
+        <button class="cat-tab" data-cat="breakfast">🌅 Breakfast</button>
+        <button class="cat-tab" data-cat="salads">🥗 Salads</button>
+        <button class="cat-tab" data-cat="continental">🥩 Continental</button>
+        <button class="cat-tab" data-cat="ghanaian">🫕 Ghanaian</button>
+        <button class="cat-tab" data-cat="chinese">🥢 Chinese</button>
+        <button class="cat-tab" data-cat="sauces">🍲 Sauces</button>
+        <button class="cat-tab" data-cat="pizza">🍕 Pizza</button>
+        <button class="cat-tab" data-cat="sandwiches">🍔 Burgers</button>
+        <button class="cat-tab" data-cat="snacks">🍟 Snacks</button>
+        <button class="cat-tab" data-cat="pastries">🎂 Pastries</button>
+        <button class="cat-tab" data-cat="drinks">🍺 Drinks</button>
+      </div>
+
+      <div id="menuContent"></div>
+    </div>
+  </section>
+</div>
+
+<!-- Cart Bar -->
+<div class="cart-bar" id="cartBar">
+  <div class="cart-bar-inner">
+    <span class="cart-count" id="cartCount">0</span>
+    <span style="font-size:.88rem;font-weight:700" id="cartLabel">items in cart</span>
+    <span style="margin-left:auto;font-family:'Playfair Display',serif;color:var(--gold);font-size:1.05rem" id="cartTotal">GHS 0.00</span>
+    <a href="order.html" class="btn btn-primary btn-sm">View Cart →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="menu-stripe"></div>
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div><div class="footer-brand-name">Te-Deum <span>L'Audamus</span></div><p class="footer-tagline">We Create, You Enjoy</p>
+      <div class="footer-social"><a href="#" class="social-btn">📘</a><a href="#" class="social-btn">📸</a><a href="#" class="social-btn">🎵</a><a href="#" class="social-btn">💬</a></div></div>
+    <div><div class="footer-heading">Quick Links</div><div class="footer-links"><a href="index.html">→ Home</a><a href="menu.html">→ Menu</a><a href="order.html">→ Order Online</a><a href="contact.html">→ Contact</a></div></div>
+    <div><div class="footer-heading">Contact</div><div class="footer-links"><a href="contact.html">📍 Unnamed Road, Techiman</a></div></div>
+    <div><div class="footer-heading">Hours</div><div class="footer-hours"><div class="hours-row"><span class="day">Mon – Sun</span><span class="time">8AM – Late</span></div></div></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-inner"><span>© 2026 Te-Deum L'Audamus Cafeteria.</span><span>Techiman, Ghana 🇬🇭</span></div></div></div>
+</footer>
+
+<div class="floating-btns">
+  <a href="https://wa.me/233249392333" target="_blank" rel="noopener noreferrer" class="float-btn float-wa" data-label="WhatsApp" style="position: fixed; z-index: 999999; cursor: pointer;">💬</a>
+  <a href="tel:+2330249392333" class="float-btn float-call" data-label="Call">📞</a>
+  <a href="order.html" class="float-btn float-order" data-label="Order">🛒</a>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>

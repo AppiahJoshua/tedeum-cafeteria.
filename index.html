@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="paystack-key" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Te-Deum L'Audamus Cafeteria – Techiman</title>
+  <meta name="description" content="Te-Deum L'Audamus Cafeteria — Premium dining in Techiman. Pizza, Continental, Ghanaian, Chinese dishes, catering and more.">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--dark)}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 40%,rgba(139,26,26,.22) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 15% 75%,rgba(212,160,32,.1) 0%,transparent 60%)}
+    .hero-pattern{position:absolute;inset:0;opacity:.035;background-image:repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%),repeating-linear-gradient(-45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%);background-size:36px 36px}
+    .hero-content{position:relative;z-index:2;padding:120px 0 80px;max-width:680px}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(212,160,32,.08);border:1px solid var(--border);border-radius:22px;padding:7px 16px;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;animation:fadeInUp .7s ease both}
+    .hero-eyebrow .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s infinite}
+    .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,5rem);font-weight:900;line-height:1.06;margin-bottom:20px;animation:fadeInUp .7s ease .1s both}
+    .hero-script{font-family:'Dancing Script',cursive;color:var(--gold);display:block;font-size:.7em;font-weight:700}
+    .hero-subtitle{font-size:1.05rem;color:var(--text-muted);line-height:1.7;margin-bottom:36px;max-width:500px;animation:fadeInUp .7s ease .2s both}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;animation:fadeInUp .7s ease .3s both}
+    .hero-stats{display:flex;gap:36px;margin-top:52px;padding-top:36px;border-top:1px solid var(--border);animation:fadeInUp .7s ease .4s both}
+    .stat-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--gold);line-height:1}
+    .stat-label{font-size:.76rem;color:var(--text-muted);margin-top:4px}
+    .hero-dishes{position:absolute;right:4%;top:50%;transform:translateY(-50%);display:grid;grid-template-columns:1fr 1fr;gap:12px;z-index:2;animation:fadeIn .9s ease .5s both}
+    .hero-dish-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px;text-align:center;transition:var(--transition);cursor:pointer;width:120px}
+    .hero-dish-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shadow-gold)}
+    .hero-dish-card .d-emoji{font-size:2.2rem;margin-bottom:7px;display:block;animation:float 4s ease-in-out infinite}
+    .hero-dish-card:nth-child(2) .d-emoji{animation-delay:.5s}
+    .hero-dish-card:nth-child(3) .d-emoji{animation-delay:1s}
+    .hero-dish-card:nth-child(4) .d-emoji{animation-delay:1.5s}
+    .hero-dish-card .d-name{font-size:.72rem;font-weight:700;color:var(--text-muted)}
+    .hero-dish-card .d-price{font-size:.78rem;color:var(--gold);font-family:'Playfair Display',serif;margin-top:3px}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    .feature-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px 22px;text-align:center;transition:var(--transition)}
+    .feature-card:hover{border-color:var(--border-strong);transform:translateY(-4px);box-shadow:var(--shadow-gold)}
+    .feature-icon{width:56px;height:56px;background:rgba(212,160,32,.1);border:1px solid rgba(212,160,32,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 12px}
+    .feature-title{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:600;margin-bottom:5px}
+    .feature-desc{font-size:.8rem;color:var(--text-muted)}
+    .cat-highlight{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;text-align:center;transition:var(--transition);cursor:pointer;text-decoration:none;display:block}
+    .cat-highlight:hover{border-color:var(--border-strong);transform:translateY(-4px);box-shadow:var(--shadow-gold)}
+    .cat-highlight .icon{font-size:2.4rem;margin-bottom:10px}
+    .cat-highlight .name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px}
+    .cat-highlight .count{font-size:.78rem;color:var(--text-muted)}
+    .review-card{flex:0 0 300px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px;transition:var(--transition)}
+    .review-card:hover{border-color:var(--border-strong)}
+    .review-header{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+    .review-avatar{width:42px;height:42px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;flex-shrink:0}
+    .review-name{font-weight:700;font-size:.92rem}
+    .review-date{font-size:.74rem;color:var(--text-muted)}
+    .review-text{font-size:.86rem;color:var(--text-muted);line-height:1.6;font-style:italic}
+    .reviews-track{display:flex;gap:18px;overflow-x:auto;padding-bottom:14px;scrollbar-width:none}
+    .reviews-track::-webkit-scrollbar{display:none}
+    .promo-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px;position:relative;overflow:hidden;transition:var(--transition)}
+    .promo-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-gold);border-color:var(--border-strong)}
+    .promo-card .big-emoji{position:absolute;top:16px;right:20px;font-size:3rem;opacity:.5}
+    @media(max-width:900px){.hero-dishes{display:none}}
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-img">TD<br>CA</div>
+      <div class="nav-logo-text">
+        <div class="nav-logo-name">Te-Deum <span>L'Audamus</span></div>
+        <div class="nav-logo-sub">Cafeteria — Techiman</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a>
+      <a href="order.html">Order</a><a href="reservations.html">Reservations</a>
+      <a href="gallery.html">Gallery</a><a href="catering.html">Catering</a>
+      <a href="reviews.html">Reviews</a><a href="contact.html">Contact</a>
+      <a href="order.html" class="nav-cta">Order Now</a>
+    </div>
+    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html" class="active">Home</a><a href="about.html">About</a><a href="menu.html">Menu</a>
+  <a href="order.html">Order Online</a><a href="reservations.html">Reservations</a>
+  <a href="gallery.html">Gallery</a><a href="catering.html">Catering</a>
+  <a href="reviews.html">Reviews</a><a href="contact.html">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="dot"></span> Open Daily — Dine In · Drive-Through · Delivery</div>
+      <h1 class="hero-title">
+        Premium Dining
+        <span class="hero-script">Experience in Techiman</span>
+      </h1>
+      <p class="hero-subtitle">From hearty Ghanaian classics to gourmet Continental dishes, authentic Chinese cuisine, stone-baked Pizza and Premium Pastries — Te-Deum delivers excellence on every plate.</p>
+      <div class="hero-actions">
+        <a href="menu.html" class="btn btn-gold btn-lg">🍽️ View Full Menu</a>
+        <a href="order.html" class="btn btn-primary btn-lg">🛒 Order Now</a>
+        <a href="reservations.html" class="btn btn-outline btn-lg">📅 Book Table</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">100+</div><div class="stat-label">Dishes Available</div></div>
+        <div><div class="stat-num">3.3<span style="font-size:1.1rem">★</span></div><div class="stat-label">Google Rating</div></div>
+        <div><div class="stat-num">3</div><div class="stat-label">Ways to Order</div></div>
+        <div><div class="stat-num">7</div><div class="stat-label">Days a Week</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dishes">
+    <a href="menu.html" class="hero-dish-card"><span class="d-emoji">🍕</span><div class="d-name">Pizza</div><div class="d-price">GHS 80+</div></a>
+    <a href="menu.html" class="hero-dish-card"><span class="d-emoji">🫕</span><div class="d-name">Fufu & Soup</div><div class="d-price">GHS 60+</div></a>
+    <a href="menu.html" class="hero-dish-card"><span class="d-emoji">🥢</span><div class="d-name">Chinese Rice</div><div class="d-price">GHS 65+</div></a>
+    <a href="menu.html" class="hero-dish-card"><span class="d-emoji">🎂</span><div class="d-name">Pastries</div><div class="d-price">GHS 20+</div></a>
+  </div>
+</section>
+
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="info-bar-inner">
+    <div class="info-item"><span class="icon">📍</span><strong>Unnamed Road, Techiman</strong></div>
+    <div class="info-item"><span class="icon">🕐</span><strong>Open from 8:00 AM Daily</strong></div>
+    <div class="info-item"><span class="icon">🚗</span><strong>Drive-Through Available</strong></div>
+    <div class="info-item"><span class="icon">🚚</span><strong>Delivery Available</strong></div>
+    <div class="info-item"><span class="icon">🍺</span><strong>Full Bar Service</strong></div>
+  </div>
+</div>
+
+<!-- MENU CATEGORIES -->
+<section style="background:var(--dark-2)">
+  <div class="container">
+    <div class="section-header centered animate-in">
+      <div class="section-label">Explore Our Menu</div>
+      <h2 class="section-title">What We <span>Serve</span></h2>
+      <div class="gold-divider"><div class="diamond"></div></div>
+      <p class="section-subtitle">Over 100 dishes across 12 categories — something for every taste and occasion.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px">
+      <a href="menu.html?cat=breakfast" class="cat-highlight animate-in"><div class="icon">🌅</div><div class="name">Breakfast</div><div class="count">5 options</div></a>
+      <a href="menu.html?cat=salads" class="cat-highlight animate-in"><div class="icon">🥗</div><div class="name">Salads</div><div class="count">7 options</div></a>
+      <a href="menu.html?cat=continental" class="cat-highlight animate-in"><div class="icon">🥩</div><div class="name">Continental</div><div class="count">20+ dishes</div></a>
+      <a href="menu.html?cat=ghanaian" class="cat-highlight animate-in"><div class="icon">🫕</div><div class="name">Ghanaian</div><div class="count">15+ dishes</div></a>
+      <a href="menu.html?cat=chinese" class="cat-highlight animate-in"><div class="icon">🥢</div><div class="name">Chinese</div><div class="count">12+ dishes</div></a>
+      <a href="menu.html?cat=pizza" class="cat-highlight animate-in"><div class="icon">🍕</div><div class="name">Pizza</div><div class="count">30+ varieties</div></a>
+      <a href="menu.html?cat=sandwiches" class="cat-highlight animate-in"><div class="icon">🍔</div><div class="name">Burgers</div><div class="count">20+ options</div></a>
+      <a href="menu.html?cat=pastries" class="cat-highlight animate-in"><div class="icon">🎂</div><div class="name">Pastries</div><div class="count">Cakes & Bakes</div></a>
+    </div>
+    <div class="text-center mt-32 animate-in">
+      <a href="menu.html" class="btn btn-outline btn-lg">See Full Menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section>
+  <div class="container">
+    <div class="section-header centered animate-in">
+      <div class="section-label">Why Te-Deum</div>
+      <h2 class="section-title">The <span>Te-Deum</span> Experience</h2>
+      <div class="gold-divider"><div class="diamond"></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px">
+      <div class="feature-card animate-in"><div class="feature-icon">🍽️</div><div class="feature-title">100+ Dishes</div><div class="feature-desc">One of the most extensive menus in Techiman — from local to global.</div></div>
+      <div class="feature-card animate-in"><div class="feature-icon">🚗</div><div class="feature-title">Drive-Through</div><div class="feature-desc">Quick and convenient drive-through service for busy customers.</div></div>
+      <div class="feature-card animate-in"><div class="feature-icon">🍺</div><div class="feature-title">Full Bar</div><div class="feature-desc">Beer, wine, spirits and cocktails — great selection for all tastes.</div></div>
+      <div class="feature-card animate-in"><div class="feature-icon">🎂</div><div class="feature-title">Custom Cakes</div><div class="feature-desc">Birthday cakes from GHS 100 and Wedding cakes from GHS 400.</div></div>
+      <div class="feature-card animate-in"><div class="feature-icon">🤝</div><div class="feature-title">Catering</div><div class="feature-desc">Full catering services for events, corporate lunches, and celebrations.</div></div>
+      <div class="feature-card animate-in"><div class="feature-icon">🅿️</div><div class="feature-title">Free Parking</div><div class="feature-desc">Free parking lot and street parking available for all guests.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section style="background:var(--dark-2)">
+  <div class="container">
+    <div class="section-header centered animate-in">
+      <div class="section-label">Guest Feedback</div>
+      <h2 class="section-title">What People <span>Say</span></h2>
+      <div class="gold-divider"><div class="diamond"></div></div>
+    </div>
+    <div class="reviews-track animate-in">
+      <div class="review-card"><div class="review-header"><div class="review-avatar">JA</div><div><div class="review-name">Joshua Appiah</div><div class="review-date">3 weeks ago</div></div></div>
+        <div class="stars mb-8"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="review-text">"Food quality is excellent — 5 stars for food, service and atmosphere. The pizza and continental dishes are top class."</p></div>
+      <div class="review-card"><div class="review-header"><div class="review-avatar" style="background:var(--gold-muted)">FM</div><div><div class="review-name">Francis Mwini</div><div class="review-date">11 months ago</div></div></div>
+        <div class="stars mb-8"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="review-text">"The atmosphere is serene, the food is superb and above all time-saving. A great place for a proper meal."</p></div>
+      <div class="review-card"><div class="review-header"><div class="review-avatar" style="background:#2A4E6C">EB</div><div><div class="review-name">Emmanuel Be-Large</div><div class="review-date">7 years ago</div></div></div>
+        <div class="stars mb-8"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <p class="review-text">"They carry themselves very well and their environment is very neat. It's a nice place to be — highly recommended!"</p></div>
+      <div class="review-card"><div class="review-header"><div class="review-avatar" style="background:var(--surface-3)">AK</div><div><div class="review-name">Ama Koduah</div><div class="review-date">2 months ago</div></div></div>
+        <div class="stars mb-8"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span></div>
+        <p class="review-text">"Came for a birthday celebration — the team made it so special! Beautiful setup with cakes and decorations. Will definitely return."</p></div>
+    </div>
+    <div class="text-center mt-24 animate-in">
+      <a href="reviews.html" class="btn btn-outline">Read All Reviews →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROMOS -->
+<section>
+  <div class="container">
+    <div class="section-header centered animate-in">
+      <div class="section-label">Special Services</div>
+      <h2 class="section-title">Events & <span>Celebrations</span></h2>
+      <div class="gold-divider"><div class="diamond"></div></div>
+    </div>
+    <div class="grid-3">
+      <div class="promo-card animate-in">
+        <div class="big-emoji">🎂</div>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Birthday Cakes</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px">Custom Birthday Cakes</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:18px">From GHS 100 to GHS 300 — beautiful custom cakes for your special day.</p>
+        <a href="catering.html" class="btn btn-gold btn-sm">Order a Cake</a>
+      </div>
+      <div class="promo-card animate-in">
+        <div class="big-emoji">💍</div>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Weddings</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px">Wedding Cakes & Catering</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:18px">Wedding cakes from GHS 400–1000 and full reception catering available.</p>
+        <a href="catering.html" class="btn btn-gold btn-sm">Plan Event</a>
+      </div>
+      <div class="promo-card animate-in">
+        <div class="big-emoji">🏢</div>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Corporate</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px">Corporate Catering</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:18px">Professional catering for office lunches, meetings and corporate events.</p>
+        <a href="catering.html" class="btn btn-gold btn-sm">Get Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--dark-2);padding:60px 0">
+  <div class="container">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:52px 44px;text-align:center;position:relative;overflow:hidden" class="animate-in">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 0%,rgba(139,26,26,.14) 0%,transparent 70%)"></div>
+      <div style="position:relative;z-index:1">
+        <div class="section-label">Ready to Dine?</div>
+        <h2 class="section-title mt-8">Order Now or <span>Book a Table</span></h2>
+        <p style="color:var(--text-muted);max-width:460px;margin:12px auto 30px">Dine in, drive through, or get it delivered. Te-Deum is ready to serve you.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a href="order.html" class="btn btn-primary btn-lg">🛒 Order Online</a>
+          <a href="reservations.html" class="btn btn-gold btn-lg">📅 Book a Table</a>
+          <a href="tel:+2330249392333" class="btn btn-outline btn-lg">📞 Call Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="menu-stripe"></div>
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">Te-Deum <span>L'Audamus</span></div>
+      <p class="footer-tagline">We Create, You Enjoy</p>
+      <p style="font-size:.86rem;color:var(--text-muted);line-height:1.7">Premium cafeteria in the heart of Techiman — serving Continental, Ghanaian, Chinese, Pizza, Pastries and more since our founding.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">📘</a><a href="#" class="social-btn">📸</a>
+        <a href="#" class="social-btn">🎵</a><a href="#" class="social-btn">💬</a>
+      </div>
+    </div>
+    <div><div class="footer-heading">Quick Links</div><div class="footer-links">
+      <a href="index.html">→ Home</a><a href="about.html">→ About Us</a>
+      <a href="menu.html">→ Our Menu</a><a href="order.html">→ Order Online</a>
+      <a href="catering.html">→ Catering</a><a href="gallery.html">→ Gallery</a>
+    </div></div>
+    <div><div class="footer-heading">Contact</div><div class="footer-links">
+      <a href="contact.html">📍 Unnamed Road, Techiman</a>
+      <a href="contact.html">🗺️ H3M7+2P Techiman</a>
+    </div></div>
+    <div><div class="footer-heading">Hours</div>
+      <div class="footer-hours">
+        <div class="hours-row"><span class="day">Mon – Sun</span><span class="time">8:00 AM – Late</span></div>
+      </div>
+      <p style="margin-top:14px;font-size:.8rem;color:var(--text-muted);line-height:1.8">🚗 Drive-Through Available<br>🚚 Delivery Available<br>🍺 Full Bar Service<br>🅿️ Free Parking</p>
+    </div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><div class="footer-bottom-inner">
+    <span>© 2026 Te-Deum L'Audamus Cafeteria. All rights reserved.</span>
+    <span>Techiman, Bono East Region, Ghana 🇬🇭</span>
+  </div></div></div>
+</footer>
+
+<div class="floating-btns">
+  <a href="https://wa.me/233249392333" target="_blank" rel="noopener noreferrer" class="float-btn float-wa" data-label="WhatsApp" style="position: fixed; z-index: 999999; cursor: pointer;">💬</a>
+  <a href="tel:+2330249392333" class="float-btn float-call" data-label="Call">📞</a>
+  <a href="order.html" class="float-btn float-order" data-label="Order Now">🛒</a>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
